@@ -1,15 +1,21 @@
-var numeroSecreto = 581;
-while (chute != numeroSecreto){
-    var chute = prompt("Digite um numero entre 1 a 1000");
+var numeroSecreto = parseInt(Math.random() * 1001);
+var tentativas = 10;
 
-    if(chute == numeroSecreto){
+while (tentativas > 0) {
+    var chute = prompt("Adivinhe um numero entre 0 a 1000 com 10 tentativas. Digite um número");
+    tentativas--; //pós cada palpite feito pelo usuário, o número de tentativas restantes é reduzido em 1.
+
+    if (chute == numeroSecreto) {
         alert("Acertou!");
+        break; // Para encerrar o loop se o usuário acertou
+    } else if (chute > numeroSecreto) {
+        alert("Errou! O " + chute + " é maior do que o número secreto. Tentativas restantes: " + tentativas);
+    } else {
+        alert("Errou! O " + chute + " é menor do que o número secreto. Tentativas restantes: " + tentativas);
     }
-    else if (chute > numeroSecreto){
-        alert("Errou! digite um numero menor");
-    }
+}
 
-    else{
-        alert("Errou! digite um numero maior");
-    }
+// Exibir a resposta correta ao final
+if (tentativas === 0 && chute != numeroSecreto) {
+    alert("Suas tentativas acabaram. O número secreto era: " + numeroSecreto);
 }
